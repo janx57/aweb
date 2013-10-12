@@ -18,6 +18,5 @@ mvn clean package</pre>
 
 <h3>Running</h3>
 <pre>java -jar aweb-jar/target/aweb-0.0.1-SNAPSHOT.jar -p $PORT -d $SITE_PATH</pre>
-<pre></pre>
 
 
