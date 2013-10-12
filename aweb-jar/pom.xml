@@ -2,11 +2,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.janop.aweb</groupId>
+    <groupId>com.janx57.aweb</groupId>
     <artifactId>aweb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.janop.aweb.aweb-jar</groupId>
+  <groupId>com.janx57.aweb.aweb-jar</groupId>
   <artifactId>aweb-jar</artifactId>
   <name>aweb-jar</name>
   <description>AWeb packaged a standalone java application archive</description>
@@ -37,7 +37,7 @@
               <goal>unpack-dependencies</goal>
             </goals>
             <configuration>
-              <includeGroupIds>com.janop.aweb.main</includeGroupIds>
+              <includeGroupIds>com.janx57.aweb.main</includeGroupIds>
               <includeArtifactIds>aweb-main</includeArtifactIds>
               <includeTypes>jar</includeTypes>
               <outputDirectory>${project.build.directory}/classes</outputDirectory>
@@ -54,7 +54,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>com.janop.aweb.Main</mainClass>
+              <mainClass>com.janx57.aweb.Main</mainClass>
             </manifest>
             <addMavenDescriptor>false</addMavenDescriptor>
           </archive>
@@ -65,17 +65,17 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.janop.aweb.launcher</groupId>
+      <groupId>com.janx57.aweb.launcher</groupId>
       <artifactId>aweb-launcher</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>com.janop.aweb.main</groupId>
+      <groupId>com.janx57.aweb.main</groupId>
       <artifactId>aweb-main</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>com.janop.aweb.server</groupId>
+      <groupId>com.janx57.aweb.server</groupId>
       <artifactId>aweb-server</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>

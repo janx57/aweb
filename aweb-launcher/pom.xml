@@ -2,16 +2,16 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.janop.aweb</groupId>
+    <groupId>com.janx57.aweb</groupId>
     <artifactId>aweb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.janop.aweb.launcher</groupId>
+  <groupId>com.janx57.aweb.launcher</groupId>
   <artifactId>aweb-launcher</artifactId>
   <name>aweb-launcher</name>
   <dependencies>
     <dependency>
-      <groupId>com.janop.aweb.server</groupId>
+      <groupId>com.janx57.aweb.server</groupId>
       <artifactId>aweb-server</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
