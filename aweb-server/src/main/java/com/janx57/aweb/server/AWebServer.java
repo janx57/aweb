@@ -1,7 +1,6 @@
 package com.janx57.aweb.server;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -71,8 +70,7 @@ public class AWebServer implements Runnable {
       ServerSocketChannel ssc = ServerSocketChannel.open();
       ssc.configureBlocking(false);
 
-      InetAddress lh = InetAddress.getByName("127.0.0.1");
-      InetSocketAddress isa = new InetSocketAddress(lh, config.port);
+      InetSocketAddress isa = new InetSocketAddress(config.ip, config.port);
       ssc.socket().bind(isa);
       ssc.register(accept, SelectionKey.OP_ACCEPT);
     } catch (IOException e) {

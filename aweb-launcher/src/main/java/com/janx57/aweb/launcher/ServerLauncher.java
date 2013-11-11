@@ -1,5 +1,6 @@
 package com.janx57.aweb.launcher;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import com.janx57.aweb.server.config.ConfigModule;
 
 public final class ServerLauncher {
 
-  public int launch(String[] args) {
+  public int launch(String[] args) throws UnknownHostException {
     List<Module> modules = new ArrayList<>();
     modules.add(new ConfigModule(new CommandArgsParser(args).getConfig()));
     modules.add(new ServerModule());
