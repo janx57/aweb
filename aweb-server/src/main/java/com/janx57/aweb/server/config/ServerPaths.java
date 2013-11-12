@@ -13,12 +13,20 @@ public class ServerPaths {
   private static final String WWW_DIR = "www";
   private static final String LOG_DIR = "log";
 
-  public final File wwwDir;
-  public final File logDir;
+  private final File wwwDir;
+  private final File logDir;
 
   @Inject
   public ServerPaths(AWebConfig config) {
     wwwDir = new File(config.getAppDir(), WWW_DIR);
     logDir = new File(config.getAppDir(), LOG_DIR);
+  }
+
+  public File getWwwDir() {
+    return wwwDir;
+  }
+
+  public File getLogDir() {
+    return logDir;
   }
 }

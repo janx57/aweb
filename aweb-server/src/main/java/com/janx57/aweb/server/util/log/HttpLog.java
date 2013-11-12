@@ -19,7 +19,7 @@ public class HttpLog extends AbstractLog {
   @Inject
   public HttpLog(ServerPaths paths) {
     dst.setName(LOG_NAME);
-    dst.setFile(new File(paths.logDir, LOG_NAME).getPath());
+    dst.setFile(new File(paths.getLogDir(), LOG_NAME).getPath());
     dst.activateOptions();
   }
 

@@ -18,7 +18,7 @@ public class ErrorLog extends AbstractLog {
   @Inject
   public ErrorLog(ServerPaths paths) {
     dst.setName(LOG_NAME);
-    dst.setFile(new File(paths.logDir, LOG_NAME).getPath());
+    dst.setFile(new File(paths.getLogDir(), LOG_NAME).getPath());
     dst.activateOptions();
   }
 

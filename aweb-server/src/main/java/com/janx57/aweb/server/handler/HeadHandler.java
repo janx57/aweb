@@ -43,7 +43,7 @@ public class HeadHandler implements Handler {
   }
 
   private byte[] getContent(String path) throws IOException {
-    FileInputStream fis = new FileInputStream(new File(paths.wwwDir, path));
+    FileInputStream fis = new FileInputStream(new File(paths.getWwwDir(), path));
     try {
       return ByteStreams.toByteArray(fis);
     } finally {
