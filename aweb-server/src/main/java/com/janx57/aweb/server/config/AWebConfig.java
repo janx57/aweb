@@ -6,7 +6,7 @@ import java.net.InetAddress;
 import net.jcip.annotations.Immutable;
 
 @Immutable
-public class AWebConfig {
+public final class AWebConfig {
   private final InetAddress ip;
   private final int port;
   private final File appDir;

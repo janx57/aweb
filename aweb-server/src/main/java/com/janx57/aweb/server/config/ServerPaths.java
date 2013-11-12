@@ -9,7 +9,7 @@ import com.google.inject.Singleton;
 
 @Immutable
 @Singleton
-public class ServerPaths {
+public final class ServerPaths {
   private static final String WWW_DIR = "www";
   private static final String LOG_DIR = "log";
 
