@@ -70,7 +70,7 @@ public class AWebServer implements Runnable {
       ServerSocketChannel ssc = ServerSocketChannel.open();
       ssc.configureBlocking(false);
 
-      InetSocketAddress isa = new InetSocketAddress(config.ip, config.port);
+      InetSocketAddress isa = new InetSocketAddress(config.getIp(), config.getPort());
       ssc.socket().bind(isa);
       ssc.register(accept, SelectionKey.OP_ACCEPT);
     } catch (IOException e) {

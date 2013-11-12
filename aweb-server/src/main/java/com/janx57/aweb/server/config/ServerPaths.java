@@ -18,7 +18,7 @@ public class ServerPaths {
 
   @Inject
   public ServerPaths(AWebConfig config) {
-    wwwDir = new File(config.appDir, WWW_DIR);
-    logDir = new File(config.appDir, LOG_DIR);
+    wwwDir = new File(config.getAppDir(), WWW_DIR);
+    logDir = new File(config.getAppDir(), LOG_DIR);
   }
 }

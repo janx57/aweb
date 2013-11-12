@@ -7,13 +7,25 @@ import net.jcip.annotations.Immutable;
 
 @Immutable
 public class AWebConfig {
-  public final InetAddress ip;
-  public final int port;
-  public final File appDir;
+  private final InetAddress ip;
+  private final int port;
+  private final File appDir;
 
   public AWebConfig(final InetAddress ip, final int port, final File appDir) {
     this.ip = ip;
     this.port = port;
     this.appDir = appDir;
+  }
+
+  public InetAddress getIp() {
+    return ip;
+  }
+
+  public int getPort() {
+    return port;
+  }
+
+  public File getAppDir() {
+    return appDir;
   }
 }
