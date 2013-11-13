@@ -43,7 +43,8 @@ public class AWebServer implements Runnable {
 
   @Inject
   public AWebServer(Executor workers, AWebConfig config, MessageBus bus,
-      HandlerContainer handlers, RequestTask.Factory requestTaskFactory, ErrorLog log) {
+      HandlerContainer handlers, RequestTask.Factory requestTaskFactory,
+      ErrorLog log) {
     this.workers = workers;
     this.config = config;
     this.bus = bus;
@@ -70,7 +71,8 @@ public class AWebServer implements Runnable {
       ServerSocketChannel ssc = ServerSocketChannel.open();
       ssc.configureBlocking(false);
 
-      InetSocketAddress isa = new InetSocketAddress(config.getIp(), config.getPort());
+      InetSocketAddress isa =
+          new InetSocketAddress(config.getIp(), config.getPort());
       ssc.socket().bind(isa);
       ssc.register(accept, SelectionKey.OP_ACCEPT);
     } catch (IOException e) {
@@ -181,6 +183,29 @@ public class AWebServer implements Runnable {
         // Sockets in this set will be closed after specified amount of time.
         waitingSockets.add(channel);
       }
+    }
+  }
+
+  private static class ChannelSession {
+    protected StringBuffer data;
+    private final String headerEnd = "\r\n\r\n";
+
+    ChannelSession() {
+      data = new StringBuffer();
+    }
+
+    void append(char c) {
+      data.append(c);
+    }
+
+    String get() {
+      final String retData = data.toString();
+      data.setLength(0);
+      return retData;
+    }
+
+    boolean isReady() {
+      return data.toString().endsWith(headerEnd);
     }
   }
 }
