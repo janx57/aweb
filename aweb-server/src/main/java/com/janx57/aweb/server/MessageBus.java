@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentMap;
 import com.google.inject.Singleton;
 
 @Singleton
-class MessageBus {
+final class MessageBus {
   private final int initQueueSize = 1000;
 
   final ConcurrentMap<Channel, Queue<ByteBuffer>> response =

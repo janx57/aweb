@@ -14,7 +14,7 @@ import com.janx57.aweb.server.http.HttpRequest;
 import com.janx57.aweb.server.http.HttpResponse;
 import com.janx57.aweb.server.util.log.HttpLog;
 
-class RequestTask implements Runnable {
+final class RequestTask implements Runnable {
   interface Factory {
     RequestTask create(String request, SocketChannel channel);
   }
@@ -59,7 +59,7 @@ class RequestTask implements Runnable {
     server.wakeup();
   }
 
-  HttpResponse process(HttpRequest request) {
+  private HttpResponse process(HttpRequest request) {
     HttpResponse response = new HttpResponse();
 
     Handler handler = handlers.getHandler(request.getMethod());

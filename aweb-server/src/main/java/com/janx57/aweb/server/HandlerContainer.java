@@ -12,8 +12,8 @@ import com.janx57.aweb.server.handler.HeadHandler;
 import com.janx57.aweb.server.http.HttpMethod;
 
 @Singleton
-class HandlerContainer {
-  final ConcurrentMap<HttpMethod, Handler> handlers;
+final class HandlerContainer {
+  final private ConcurrentMap<HttpMethod, Handler> handlers;
 
   @Inject
   HandlerContainer(ServerPaths paths) {

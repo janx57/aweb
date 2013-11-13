@@ -10,11 +10,11 @@ import net.jcip.annotations.Immutable;
 
 @Immutable
 public final class HttpRequest extends HttpMessage {
-  protected final HttpMethod method;
-  protected final String uri;
-  protected final String body;
-  protected final String version;
-  protected final Map<String, String> headers;
+  private final HttpMethod method;
+  private final String uri;
+  private final String body;
+  private final String version;
+  private final Map<String, String> headers;
 
   public HttpRequest(final String requestBody) {
     String[] lines = requestBody.split(crlf);

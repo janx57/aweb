@@ -28,18 +28,18 @@ public class AWebServer implements Runnable {
   private final static int SELECTOR_TIMEOUT_MS =
       PERSISTENT_CONNECTION_TIMEOUT_MS / 2;
 
-  final Executor workers;
-  final Selector accept;
-  final MessageBus bus;
-  final AWebConfig config;
-  final HandlerContainer handlers;
-  final RequestTask.Factory requestTaskFactory;
-  final ErrorLog log;
+  protected final Executor workers;
+  protected final Selector accept;
+  protected final MessageBus bus;
+  protected final AWebConfig config;
+  protected final HandlerContainer handlers;
+  protected final RequestTask.Factory requestTaskFactory;
+  protected final ErrorLog log;
 
   // Part of the HTTP persistent connections feature.
   // A set of sockets to which we finished writing but haven't started reading a
   // new request.
-  final ExpirySet<SocketChannel> waitingSockets;
+  protected final ExpirySet<SocketChannel> waitingSockets;
 
   @Inject
   public AWebServer(Executor workers, AWebConfig config, MessageBus bus,
@@ -66,7 +66,7 @@ public class AWebServer implements Runnable {
     start();
   }
 
-  public void start() {
+  private void start() {
     try {
       ServerSocketChannel ssc = ServerSocketChannel.open();
       ssc.configureBlocking(false);
@@ -187,7 +187,7 @@ public class AWebServer implements Runnable {
   }
 
   private static class ChannelSession {
-    protected StringBuffer data;
+    private StringBuffer data;
     private final String headerEnd = "\r\n\r\n";
 
     ChannelSession() {

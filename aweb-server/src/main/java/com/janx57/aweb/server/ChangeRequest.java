@@ -5,7 +5,7 @@ import java.nio.channels.SocketChannel;
 import net.jcip.annotations.Immutable;
 
 @Immutable
-class ChangeRequest {
+final class ChangeRequest {
   final SocketChannel channel;
   final int ops;
 

@@ -8,7 +8,7 @@ import com.google.common.cache.RemovalListener;
 
 public class ExpirySetImpl<T> implements ExpirySet<T> {
 
-  protected Cache<T, Object> cache;
+  protected final Cache<T, Object> cache;
 
   // Concept from HashSet implementation from OpenJDK
   // Dummy value to associate with an Object in the backing Map

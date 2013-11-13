@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HttpResponse extends HttpMessage {
-  protected String version;
-  protected int statusCode;
-  protected String reasonPhrase;
-  protected byte[] body;
-  protected final Map<String, String> headers = new HashMap<>();
+  private String version;
+  private int statusCode;
+  private String reasonPhrase;
+  private byte[] body;
+  private final Map<String, String> headers = new HashMap<>();
 
   public void setVersion(final String version) {
     this.version = version;

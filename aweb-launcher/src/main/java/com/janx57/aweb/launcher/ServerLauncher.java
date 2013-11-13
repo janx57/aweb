@@ -18,7 +18,7 @@ public final class ServerLauncher {
     modules.add(new ConfigModule(new CommandArgsParser(args).getConfig()));
     modules.add(new ServerModule());
     Injector injector = Guice.createInjector(modules);
-    injector.getInstance(AWebServer.class).start();
+    injector.getInstance(AWebServer.class).run();
     return 0;
   }
 }
