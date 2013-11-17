@@ -2,19 +2,10 @@ package com.janx57.aweb.server.http;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class HttpResponse extends HttpMessage {
-  private String version;
   private int statusCode;
   private String reasonPhrase;
-  private byte[] body;
-  private final Map<String, String> headers = new HashMap<>();
-
-  public void setVersion(final String version) {
-    this.version = version;
-  }
 
   public void setStatusCode(final int statusCode) {
     this.statusCode = statusCode;
@@ -22,18 +13,6 @@ public class HttpResponse extends HttpMessage {
 
   public void setReasonPhrase(final String reasonPhrase) {
     this.reasonPhrase = reasonPhrase;
-  }
-
-  public void setHeader(final String name, final String value) {
-    headers.put(name, value);
-  }
-
-  public void setBody(final byte[] body) {
-    this.body = body;
-  }
-
-  public byte[] getBody() {
-    return body;
   }
 
   public byte[] toByteArray() {

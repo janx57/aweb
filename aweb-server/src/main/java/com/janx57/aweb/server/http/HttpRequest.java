@@ -4,17 +4,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.jcip.annotations.Immutable;
-
 // http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html
 
-@Immutable
 public final class HttpRequest extends HttpMessage {
   private final HttpMethod method;
   private final String uri;
-  private final String body;
-  private final String version;
-  private final Map<String, String> headers;
 
   public HttpRequest(final String requestBody) {
     String[] lines = requestBody.split(crlf);
@@ -36,7 +30,7 @@ public final class HttpRequest extends HttpMessage {
     if (++curr < lines.length) {
       b = lines[curr];
     }
-    body = b;
+    body = b.getBytes();
   }
 
   public HttpMethod getMethod() {
