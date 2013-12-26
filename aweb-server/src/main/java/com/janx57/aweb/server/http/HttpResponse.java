@@ -17,7 +17,7 @@ public class HttpResponse extends HttpMessage {
 
   public byte[] toByteArray() {
     StringBuilder responseText = new StringBuilder();
-    responseText.append(version + sp + statusCode + reasonPhrase);
+    responseText.append(version + sp + statusCode + sp + reasonPhrase);
     responseText.append(crlf);
     for (String key : headers.keySet()) {
       responseText.append(key + ":" + sp + headers.get(key) + crlf);
