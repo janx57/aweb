@@ -16,7 +16,7 @@ import com.janx57.aweb.server.util.log.HttpLog;
 
 final class RequestTask implements Runnable {
   interface Factory {
-    RequestTask create(String request, SocketChannel channel);
+    RequestTask create(String request, SocketChannel channel, MessageBus bus);
   }
 
   private final MessageBus bus;
@@ -28,7 +28,7 @@ final class RequestTask implements Runnable {
 
   @Inject
   RequestTask(@Assisted String request, @Assisted SocketChannel channel,
-      MessageBus bus, AWebServer server, HandlerContainer handlers, HttpLog log) {
+      @Assisted MessageBus bus, AWebServer server, HandlerContainer handlers, HttpLog log) {
     this.bus = bus;
     this.server = server;
     this.request = request;

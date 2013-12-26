@@ -42,12 +42,12 @@ public class AWebServer implements Runnable {
   protected final ExpirySet<SocketChannel> waitingSockets;
 
   @Inject
-  public AWebServer(Executor workers, AWebConfig config, MessageBus bus,
+  public AWebServer(Executor workers, AWebConfig config,
       HandlerContainer handlers, RequestTask.Factory requestTaskFactory,
       ErrorLog log) {
     this.workers = workers;
     this.config = config;
-    this.bus = bus;
+    this.bus = new MessageBus();
     this.handlers = handlers;
     this.requestTaskFactory = requestTaskFactory;
     this.log = log;
@@ -81,6 +81,10 @@ public class AWebServer implements Runnable {
 
     while (true) {
       try {
+        if (Thread.currentThread().isInterrupted()) {
+          break;
+        }
+
         accept.select(SELECTOR_TIMEOUT_MS);
 
         // Close sockets which weren't used for at least
@@ -159,7 +163,7 @@ public class AWebServer implements Runnable {
     }
     if (session.isReady()) {
       String request = session.get();
-      workers.execute(requestTaskFactory.create(request, channel));
+      workers.execute(requestTaskFactory.create(request, channel, bus));
     }
   }
 
