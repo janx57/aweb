@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import com.google.common.io.ByteStreams;
-import com.janx57.aweb.server.AWebServer;
+import com.janx57.aweb.server.Server;
 import com.janx57.aweb.server.config.ServerPaths;
 import com.janx57.aweb.server.http.HttpRequest;
 import com.janx57.aweb.server.http.HttpResponse;
@@ -36,7 +36,7 @@ public class HeadHandler implements Handler {
 
     response.setReasonPhrase(status.phrase);
     response.setStatusCode(status.code);
-    response.setVersion(AWebServer.protocolVersion);
+    response.setVersion(Server.protocolVersion);
     response.setHeader("Date", getServerTime());
     response.setHeader("Content-Type", "text/html");
     response.setHeader("Content-Length", body.length + "");

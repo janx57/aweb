@@ -7,7 +7,6 @@
   <packaging>pom</packaging>
   <name>aweb-parent</name>
   <modules>
-    <module>aweb-launcher</module>
     <module>aweb-server</module>
     <module>aweb-main</module>
     <module>aweb-acceptance-tests</module>

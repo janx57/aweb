@@ -18,8 +18,8 @@ import java.util.jar.JarFile;
 
 public final class Main {
   private static String LIB_EXT = ".jar";
-  private static String LAUNCHER_CLASS =
-      "com.janx57.aweb.launcher.ServerLauncher";
+  private static String CLASS =
+      "com.janx57.aweb.server.Server";
 
   private static ClassLoader getLibClassLoader(final ClassLoader parent)
       throws IOException {
@@ -88,8 +88,8 @@ public final class Main {
     final ClassLoader libClassloader =
         getLibClassLoader(Thread.currentThread().getContextClassLoader());
     Thread.currentThread().setContextClassLoader(libClassloader);
-    Class<?> launcher = Class.forName(LAUNCHER_CLASS, true, libClassloader);
-    final Method launch = launcher.getMethod("launch", String[].class);
+    Class<?> launcher = Class.forName(CLASS, true, libClassloader);
+    final Method launch = launcher.getMethod("main", String[].class);
     launch.invoke(launcher.newInstance(), new Object[] {args});
   }
 

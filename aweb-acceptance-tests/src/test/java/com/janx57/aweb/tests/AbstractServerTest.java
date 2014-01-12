@@ -1,47 +1,37 @@
 package com.janx57.aweb.tests;
 
 import java.net.UnknownHostException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.CountDownLatch;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 
-import com.janx57.aweb.launcher.ServerLauncher;
+import com.janx57.aweb.server.Server;
 
 public class AbstractServerTest {
   final String initSite = initSite();
+  final String host = "localhost";
   final String port = "9123";
 
-  ExecutorService serverExecutor = Executors.newSingleThreadExecutor();
+  Server server = null;
+  CountDownLatch latch = null;
 
   @Before
   public void beforeTest() throws UnknownHostException {
-    serverExecutor.execute(new Runnable() {
+    latch = new CountDownLatch(1);
+    server = new Server(new Runnable() {
       @Override
       public void run() {
-        try {
-          new ServerLauncher()
-              .launch(new String[] {"-d", initSite, "-p", port});
-        } catch (UnknownHostException e) {
-          Assert.assertTrue(e.getMessage(), false);
-        }
+        latch.countDown();
       }
     });
+    server.main(new String[] {"-d", initSite, "-p", port, "-h", host});
   }
 
   @After
   public void afterTest() {
-    serverExecutor.shutdownNow();
-    try {
-      serverExecutor.awaitTermination(1, TimeUnit.MINUTES);
-    } catch (InterruptedException e) {
-      // Shouldn't have happened.
-      Assert.assertTrue(e.getMessage(), false);
-    }
-    Assert.assertTrue(serverExecutor.isTerminated());
+    // TODO: through reflection get an instance of LifecycleManager an issue
+    // stop()
   }
 
   private String initSite() {

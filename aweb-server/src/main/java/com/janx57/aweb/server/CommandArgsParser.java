@@ -1,14 +1,10 @@
-package com.janx57.aweb.launcher;
+package com.janx57.aweb.server;
 
-import java.io.File;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
-
-import com.janx57.aweb.server.config.AWebConfig;
 
 class CommandArgsParser {
   @Option(name = "-h", usage = "hostname to bind on")
@@ -20,13 +16,13 @@ class CommandArgsParser {
   @Option(name = "-d", usage = "www root directory")
   private String wwwDir = "~/aweb";
 
-  String[] args;
+  private String[] args;
 
   public CommandArgsParser(String[] args) {
     this.args = args;
   }
 
-  AWebConfig getConfig() throws UnknownHostException {
+  void parse() throws UnknownHostException {
     CmdLineParser parser = new CmdLineParser(this);
     try {
       parser.parseArgument(args);
@@ -37,7 +33,17 @@ class CommandArgsParser {
       System.err.println();
       throw new IllegalArgumentException(cle.getMessage());
     }
+  }
 
-    return new AWebConfig(InetAddress.getByName(hostname), port, new File(wwwDir));
+  public String getHostname() {
+    return hostname;
+  }
+
+  public int getPort() {
+    return port;
+  }
+
+  public String getWwwDir() {
+    return wwwDir;
   }
 }

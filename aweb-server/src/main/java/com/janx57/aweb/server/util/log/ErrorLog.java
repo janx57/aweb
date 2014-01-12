@@ -10,6 +10,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.janx57.aweb.server.config.ServerPaths;
 
+// TODO create an interface and then use it in the code
+// so that the user is not limited to logging to a file.
 @Singleton
 public class ErrorLog extends AbstractLog {
   private static final Logger log = Logger.getLogger(ErrorLog.class);

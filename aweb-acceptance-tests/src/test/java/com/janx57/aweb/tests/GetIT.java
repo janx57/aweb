@@ -4,21 +4,24 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import junit.framework.Assert;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.ProtocolVersion;
 import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class GetIT extends AbstractServerTest {
+
   @Test
-  public void testGet() throws IllegalStateException, IOException {
-    String url = "http://localhost:9123/index.html";
+  public void getTest() throws ClientProtocolException, IOException, InterruptedException {
+    latch.await();
+
+    String url = String.format("http://%s:%s/index.html", host, port);
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpGet request = new HttpGet(url);

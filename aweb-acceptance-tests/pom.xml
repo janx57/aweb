@@ -11,8 +11,8 @@
   <name>aweb-acceptance-tests</name>
   <dependencies>
     <dependency>
-      <groupId>com.janx57.aweb.launcher</groupId>
-      <artifactId>aweb-launcher</artifactId>
+      <groupId>com.janx57.aweb.server</groupId>
+      <artifactId>aweb-server</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>

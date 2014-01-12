@@ -7,7 +7,7 @@ import net.jcip.annotations.Immutable;
 
 @Immutable
 public final class AWebConfig {
-  private final InetAddress ip;
+  private final InetAddress ip; // TODO change to InetSocketAddress and then remove the port field
   private final int port;
   private final File appDir;
 

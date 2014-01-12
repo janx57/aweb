@@ -2,9 +2,6 @@ package com.janx57.aweb.server;
 
 import java.nio.channels.SocketChannel;
 
-import net.jcip.annotations.Immutable;
-
-@Immutable
 final class ChangeRequest {
   final SocketChannel channel;
   final int ops;
