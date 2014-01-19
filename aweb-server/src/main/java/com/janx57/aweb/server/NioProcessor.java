@@ -2,6 +2,7 @@ package com.janx57.aweb.server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -34,6 +35,7 @@ public final class NioProcessor implements LifecycleListener {
   private final HandlerContainer handlers;
   private final ExecutorService acceptorExecutor = Executors.newSingleThreadExecutor();
   private final AWebConfig config;
+  private ServerSocket serverSocket;
 
   @Inject
   public NioProcessor(final RequestsBus bus, final HandlerContainer handlers,
@@ -74,7 +76,8 @@ public final class NioProcessor implements LifecycleListener {
 
       InetSocketAddress isa =
           new InetSocketAddress(config.getIp(), config.getPort());
-      ssc.socket().bind(isa);
+      serverSocket = ssc.socket();
+      serverSocket.bind(isa);
       ssc.register(accept, SelectionKey.OP_ACCEPT);
     } catch (IOException e) {
       throw new IllegalStateException(e);
@@ -137,6 +140,11 @@ public final class NioProcessor implements LifecycleListener {
   @Override
   public void stop() {
     acceptorExecutor.shutdownNow();
+    try {
+      serverSocket.close();
+    } catch (IOException e) {
+      log.error(e.getMessage(), e);
+    }
   }
 
   private void accept(final SelectionKey sk) throws IOException {
