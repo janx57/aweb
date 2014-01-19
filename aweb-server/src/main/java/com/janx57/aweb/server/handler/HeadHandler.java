@@ -40,6 +40,7 @@ public class HeadHandler implements Handler {
     response.setHeader("Date", getServerTime());
     response.setHeader("Content-Type", "text/html");
     response.setHeader("Content-Length", body.length + "");
+    response.setBody(new byte[] {});
   }
 
   private byte[] getContent(String path) throws IOException {
