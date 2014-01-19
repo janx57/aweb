@@ -1,11 +1,13 @@
 package com.janx57.aweb.tests;
 
+import java.lang.reflect.Field;
 import java.net.UnknownHostException;
 import java.util.concurrent.CountDownLatch;
 
 import org.junit.After;
 import org.junit.Before;
 
+import com.janx57.aweb.lifecycle.LifecycleManager;
 import com.janx57.aweb.server.Server;
 
 public class AbstractServerTest {
@@ -29,9 +31,11 @@ public class AbstractServerTest {
   }
 
   @After
-  public void afterTest() {
-    // TODO: through reflection get an instance of LifecycleManager an issue
-    // stop()
+  public void afterTest() throws Exception {
+    Field f = server.getClass().getDeclaredField("lifecycleManager");
+    f.setAccessible(true);
+    LifecycleManager m = (LifecycleManager) f.get(server);
+    m.stop();
   }
 
   private String initSite() {
