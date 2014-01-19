@@ -29,14 +29,8 @@ public class GetIT extends AbstractServerTest {
 
     HttpResponse response = client.execute(request);
 
-    StatusLine sl = response.getStatusLine();
-    Assert.assertEquals(200, sl.getStatusCode());
-    Assert.assertEquals("OK", sl.getReasonPhrase());
-
-    ProtocolVersion pv = response.getProtocolVersion();
-    Assert.assertEquals("HTTP", pv.getProtocol());
-    Assert.assertEquals(1, pv.getMajor());
-    Assert.assertEquals(1, pv.getMinor());
+    verifyStatus(response, 200, "OK");
+    verifyProtocolVersion(response);
 
     String respBody =
         IOUtils.toString(response.getEntity().getContent(), "UTF-8");
@@ -62,18 +56,25 @@ public class GetIT extends AbstractServerTest {
 
     HttpResponse response = client.execute(request);
 
-    StatusLine sl = response.getStatusLine();
-    Assert.assertEquals(200, sl.getStatusCode());
-    Assert.assertEquals("OK", sl.getReasonPhrase());
-
-    ProtocolVersion pv = response.getProtocolVersion();
-    Assert.assertEquals("HTTP", pv.getProtocol());
-    Assert.assertEquals(1, pv.getMajor());
-    Assert.assertEquals(1, pv.getMinor());
+    verifyStatus(response, 200, "OK");
+    verifyProtocolVersion(response);
 
     int contentLength = Integer.parseInt(response.getLastHeader("Content-Length").getValue());
     Assert.assertEquals(68, contentLength);
 
     Assert.assertNull(response.getEntity());
+  }
+
+  private void verifyStatus(HttpResponse r, int expectedCode, String expectedPhrase) {
+    StatusLine sl = r.getStatusLine();
+    Assert.assertEquals(expectedCode, sl.getStatusCode());
+    Assert.assertEquals(expectedPhrase, sl.getReasonPhrase());
+  }
+
+  private void verifyProtocolVersion(HttpResponse r) {
+    ProtocolVersion pv = r.getProtocolVersion();
+    Assert.assertEquals("HTTP", pv.getProtocol());
+    Assert.assertEquals(1, pv.getMajor());
+    Assert.assertEquals(1, pv.getMinor());
   }
 }
